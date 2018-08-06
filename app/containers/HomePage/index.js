@@ -11,6 +11,9 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
+import Button from './Button';
+import Input from './Input';
 import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -19,6 +22,10 @@ export default class HomePage extends React.PureComponent {
     return (
       <h1>
         <FormattedMessage {...messages.header} />
+        <form>
+          <Input type="text" />
+          <Button type="submit" />
+        </form>
       </h1>
     );
   }
