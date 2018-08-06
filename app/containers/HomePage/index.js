@@ -13,6 +13,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import Button from './Button';
+import Form from './Form';
 import Input from './Input';
 import messages from './messages';
 
@@ -22,10 +23,10 @@ export default class HomePage extends React.PureComponent {
     return (
       <h1>
         <FormattedMessage {...messages.header} />
-        <form>
+        <Form>
           <Input type="text" />
           <Button type="submit" />
-        </form>
+        </Form>
       </h1>
     );
   }
