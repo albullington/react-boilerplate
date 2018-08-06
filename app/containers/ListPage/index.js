@@ -14,9 +14,12 @@ import messages from './messages';
 export default class ListPage extends React.PureComponent {
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
+        <ul>List will go here.</ul>
+      </div>
     );
   }
 }

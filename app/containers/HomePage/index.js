@@ -21,13 +21,15 @@ import messages from './messages';
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
+      <div>
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <Form>
           <Input type="text" />
           <Button type="submit" />
         </Form>
-      </h1>
+      </div>
     );
   }
 }
