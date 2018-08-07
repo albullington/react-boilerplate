@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  text-align: center;
+  text-align: left;
+  background-color: #555;
 `;
