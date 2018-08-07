@@ -26,7 +26,7 @@ export default class HomePage extends React.PureComponent {
           <FormattedMessage {...messages.header} />
         </h1>
         <Form>
-          <Input type="text" />
+          <Input type="text" placeholder="Enter a string here" />
           <Button type="submit" />
         </Form>
       </div>

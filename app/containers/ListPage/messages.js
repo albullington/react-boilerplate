@@ -8,6 +8,6 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.ListPage.header',
-    defaultMessage: 'Here is the list you requested.',
+    defaultMessage: 'Below are all previously searched strings.',
   },
 });

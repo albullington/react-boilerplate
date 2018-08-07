@@ -8,6 +8,6 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.HomePage.header',
-    defaultMessage: 'Please enter your text string below.',
+    defaultMessage: 'Add a string of text to the list.',
   },
 });
