@@ -16,6 +16,13 @@ const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+app.use('/search/:string', (req, res) => {
+  // const { string } = req.params;
+  // post string to database
+  // fetch list of strings
+  // send list back to client in parentheses below
+  res.send();
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
