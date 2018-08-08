@@ -9,7 +9,4 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const ADD_STRING = 'boilerplate/Home/ADD_STRING';
-export const API_CALL_REQUEST = 'boilerplate/List/API_CALL_REQUEST';
-export const API_CALL_SUCCESS = 'boilerplate/List/API_CALL_SUCCESS';
-export const API_CALL_FAILURE = 'boilerplate/List/API_CALL_FAILURE';
+export const UPDATE_STRING = 'boilerplate/Home/UPDATE_STRING';

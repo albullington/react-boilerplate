@@ -15,18 +15,18 @@
  *    }
  */
 
-import { ADD_STRING } from './constants';
+import { UPDATE_STRING } from './constants';
 
 /**
  * Changes the input field of the form
  *
  * @param  {searchTerm} searchTerm The new text of the input field
  *
- * @return {object}    An action object with a type of ADD_STRING
+ * @return {object}    An action object with a type of UPDATE_STRING
  */
-export function addStringToList(searchTerm) {
+export function addString(searchTerm) {
   return {
-    type: ADD_STRING,
+    type: UPDATE_STRING,
     searchTerm,
   };
 }

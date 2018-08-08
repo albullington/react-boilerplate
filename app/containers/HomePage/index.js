@@ -19,6 +19,21 @@ import messages from './messages';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class HomePage extends React.PureComponent {
+  constructor() {
+    super();
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    // console.log(e.target.value);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div>
@@ -26,8 +41,12 @@ export default class HomePage extends React.PureComponent {
           <FormattedMessage {...messages.header} />
         </h1>
         <Form>
-          <Input type="text" placeholder="Enter a string here" />
-          <Button type="submit" />
+          <Input
+            type="text"
+            placeholder="Enter a string here"
+            onChange={this.handleChange}
+          />
+          <Button onClick={this.handleClick} type="submit" />
         </Form>
       </div>
     );

@@ -1,28 +1,36 @@
-/*
- * ListPage
- *
- * This is the page that displays a list of strings, at the '/list' route
- *
- */
-
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
 
-/* eslint-disable react/prefer-stateless-function */
-export default class ListPage extends React.PureComponent {
-  render() {
-    const list = ['string1', 'string2', 'string3']; // need to change this to props
-    const renderedList = list.map(item => <li key={item}>{item}</li>);
+function List(props) {
+  let content = ['string 1', 'string2'];
 
-    return (
-      <div>
-        <h1>
-          <FormattedMessage {...messages.header} />
-        </h1>
-        <ul>{renderedList}</ul>
-      </div>
-    );
+  // If we have items, render them
+  if (props.list) {
+    content = props.list.map(item => (
+      <li key={`item-${item.id}`} item={item} />
+    ));
+  } else {
+    // Otherwise render a single component
+    content = <li />;
   }
+
+  return (
+    <div>
+      <h1>
+        <FormattedMessage {...messages.header} />
+      </h1>
+      <ul>{content}</ul>
+    </div>
+  );
 }
+
+List.propTypes = {
+  component: PropTypes.func.isRequired,
+  list: PropTypes.array,
+};
+
+export default List;
