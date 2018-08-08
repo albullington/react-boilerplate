@@ -1,8 +1,6 @@
 const mongoose = require('./index');
 
-const Schema = mongoose.Schema;
-
-const listSchema = new Schema({
+const listSchema = new mongoose.Schema({
   search_term: String,
 });
 
