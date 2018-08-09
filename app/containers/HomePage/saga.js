@@ -15,7 +15,7 @@ import { makeSelectString } from 'containers/HomePage/selectors';
 export function* getList() {
   // Select searchTerm from store
   const searchTerm = yield select(makeSelectString());
-  const requestURL = `https://localhost:3000/search/${searchTerm}`;
+  const requestURL = `https://localhost:3000/api/${searchTerm}`;
 
   try {
     // Call our request helper (see 'request')

@@ -91,10 +91,10 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  list: makeSelectList(),
-  searchTerm: makeSelectString(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
+  list: makeSelectList(),
+  searchTerm: makeSelectString(),
 });
 
 const withConnect = connect(

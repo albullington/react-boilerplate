@@ -15,7 +15,7 @@ import { UPDATE_STRING } from './constants';
 
 // The initial state of the App
 export const initialState = fromJS({
-  searchTerm: false,
+  searchTerm: '',
 });
 
 function homeReducer(state = initialState, action) {

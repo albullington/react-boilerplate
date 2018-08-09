@@ -1,6 +1,7 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const logger = require('./logger');
 
 const argv = require('./argv');
@@ -14,14 +15,15 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+app.use(bodyParser.json());
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-app.use('/search/:string', (req, res) => {
-  // const { string } = req.params;
-  // post string to database
-  // fetch list of strings
-  // send list back to client in parentheses below
-  res.send('Thanks for sending a request from Redux');
+app.get('/api/:search', (req, res) => {
+  // const parsedBody = JSON.parse(req.body);
+  const { string } = req.params;
+
+  res.send(`GET REQUEST received ${string}`);
 });
 
 // In production we need to pass these values in instead of relying on webpack
