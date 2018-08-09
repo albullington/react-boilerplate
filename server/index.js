@@ -18,6 +18,8 @@ const { resolve } = require('path');
 const app = express();
 
 app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here

@@ -5,17 +5,11 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/api/:search', (req, res, next) => {
-  Promise.resolve()
-    .then(() => {
-      throw new Error('BROKEN');
-    })
-    .catch(next);
-});
-
 router.post('/api/:search', (req, res) => {
+  const searchTerm = req.params;
   const list = ['string1', 'string5'];
-  res.send(list);
+  list.push(searchTerm);
+  res.send(searchTerm);
 });
 
 module.exports = router;
