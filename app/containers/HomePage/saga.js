@@ -6,15 +6,15 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { LOAD_LIST } from 'containers/App/constants';
 import { listLoaded, listLoadingError } from 'containers/App/actions';
 
-import { makeSelectSearchTerm } from 'containers/HomePage/selectors';
+import { makeSelectString } from 'containers/HomePage/selectors';
 
 /**
  * List of strings request/response handler
  */
 export function* getList() {
   // Select searchTerm from store
-  const searchTerm = yield select(makeSelectSearchTerm());
-  const requestURL = `https://localhost:3000/${searchTerm}/search`;
+  const searchTerm = yield select(makeSelectString());
+  const requestURL = `https://localhost:3000/search/${searchTerm}`;
 
   try {
     // Call our request helper (see 'fetch')

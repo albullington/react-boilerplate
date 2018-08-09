@@ -21,7 +21,7 @@ app.use('/search/:string', (req, res) => {
   // post string to database
   // fetch list of strings
   // send list back to client in parentheses below
-  res.send();
+  res.send('Thanks for sending a request from Redux');
 });
 
 // In production we need to pass these values in instead of relying on webpack

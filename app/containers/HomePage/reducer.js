@@ -11,16 +11,16 @@
  */
 import { fromJS } from 'immutable';
 
-import { UPDTATE_STRING } from './constants';
+import { UPDATE_STRING } from './constants';
 
 // The initial state of the App
 export const initialState = fromJS({
-  searchTerm: '',
+  searchTerm: false,
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case UPDTATE_STRING:
+    case UPDATE_STRING:
       // Sets state of searchTerm to the value of the input field
       return state.set('searchTerm', action.searchTerm);
     default:

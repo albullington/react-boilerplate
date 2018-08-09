@@ -10,31 +10,46 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+import {
+  makeSelectList,
+  makeSelectLoading,
+  makeSelectError,
+} from 'containers/App/selectors';
+import LoadingList from 'components/LoadingList';
 import Button from './Button';
 import Form from './Form';
 import Input from './Input';
 import messages from './messages';
+import { loadList } from '../App/actions';
+import { addString } from './actions';
+import { makeSelectString } from './selectors';
+import reducer from './reducer';
+import saga from './saga';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class HomePage extends React.PureComponent {
-  constructor() {
-    super();
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange() {
-    // console.log(e.target.value);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
+export class HomePage extends React.PureComponent {
+  componentDidMount() {
+    if (this.props.searchTerm && this.props.searchTerm.trim().length > 0) {
+      this.props.handleSubmit();
+    }
   }
 
   render() {
+    const { loading, error, list } = this.props;
+    const listProps = {
+      loading,
+      error,
+      list,
+    };
+
     return (
       <div>
         <h1>
@@ -43,12 +58,62 @@ export default class HomePage extends React.PureComponent {
         <Form>
           <Input
             type="text"
+            id="search_term"
             placeholder="Enter a string here"
-            onChange={this.handleChange}
+            value={this.props.searchTerm}
+            onChange={this.props.handleChange}
           />
-          <Button onClick={this.handleClick} type="submit" />
+          <Button onSubmit={this.props.handleSubmit} type="submit" />
         </Form>
+        <LoadingList {...listProps} />
       </div>
     );
   }
 }
+
+HomePage.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  list: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  handleSubmit: PropTypes.func,
+  searchTerm: PropTypes.string,
+  handleChange: PropTypes.func,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    handleChange: e => dispatch(addString(e.target.value)),
+    handleSubmit: e => {
+      if (e !== undefined && e.preventDefault) e.preventDefault();
+      dispatch(loadList());
+    },
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  list: makeSelectList(),
+  searchTerm: makeSelectString(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+const withReducer = injectReducer({
+  key: 'home',
+  reducer,
+});
+
+const withSaga = injectSaga({
+  key: 'home',
+  saga,
+});
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(HomePage);

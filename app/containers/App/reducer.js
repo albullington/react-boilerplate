@@ -18,7 +18,6 @@ import { LOAD_LIST_SUCCESS, LOAD_LIST, LOAD_LIST_ERROR } from './constants';
 const initialState = fromJS({
   loading: false,
   error: false,
-  searchTerm: false,
   list: false,
 });
 
@@ -28,12 +27,9 @@ function appReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['list'], false);
+        .set('list', false);
     case LOAD_LIST_SUCCESS:
-      return state
-        .setIn(['list'], action.list)
-        .set('loading', false)
-        .set('searchTerm', action.searchTerm);
+      return state.set('list', action.list).set('loading', false);
     case LOAD_LIST_ERROR:
       return state.set('error', action.error).set('loading', false);
     default:
