@@ -18,7 +18,7 @@ import { LOAD_LIST_SUCCESS, LOAD_LIST, LOAD_LIST_ERROR } from './constants';
 const initialState = fromJS({
   loading: false,
   error: false,
-  list: false,
+  list: ['teststring'],
 });
 
 function appReducer(state = initialState, action) {

@@ -6,6 +6,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { LOAD_LIST } from 'containers/App/constants';
 import { listLoaded, listLoadingError } from 'containers/App/actions';
 
+import request from 'utils/request';
 import { makeSelectString } from 'containers/HomePage/selectors';
 
 /**
@@ -17,9 +18,9 @@ export function* getList() {
   const requestURL = `https://localhost:3000/search/${searchTerm}`;
 
   try {
-    // Call our request helper (see 'fetch')
-    const list = yield call(fetch, requestURL);
-    yield put(listLoaded(list, searchTerm));
+    // Call our request helper (see 'request')
+    const list = yield call(request, requestURL);
+    yield put(listLoaded(list));
   } catch (err) {
     yield put(listLoadingError(err));
   }
@@ -29,7 +30,7 @@ export function* getList() {
  * Root saga manages watcher lifecycle
  */
 export default function* listData() {
-  // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
+  // Watches for LOAD_LIST actions and calls getList when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount

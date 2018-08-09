@@ -19,9 +19,9 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import {
-  makeSelectList,
   makeSelectLoading,
   makeSelectError,
+  makeSelectList,
 } from 'containers/App/selectors';
 import LoadingList from 'components/LoadingList';
 import Button from './Button';
@@ -75,8 +75,8 @@ HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   list: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  handleSubmit: PropTypes.func,
   searchTerm: PropTypes.string,
+  handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
 };
 

@@ -14,8 +14,8 @@ const makeSelectLoading = () =>
 const makeSelectError = () =>
   createSelector(selectGlobal, globalState => globalState.get('error'));
 
-// const makeSelectList = () =>
-//   createSelector(selectGlobal, globalState => globalState.get('list'));
+const makeSelectList = () =>
+  createSelector(selectGlobal, globalState => globalState.get('list'));
 
 const makeSelectLocation = () =>
   createSelector(selectRoute, routeState => routeState.get('location').toJS());
@@ -24,6 +24,6 @@ export {
   selectGlobal,
   makeSelectLoading,
   makeSelectError,
-  // makeSelectList,
+  makeSelectList,
   makeSelectLocation,
 };
