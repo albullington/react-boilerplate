@@ -2,10 +2,12 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const logger = require('./logger');
 
 const argv = require('./argv');
 const port = require('./port');
+const api = require('./middlewares/api');
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
@@ -15,16 +17,12 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-app.get('/api/:search', (req, res) => {
-  // const parsedBody = JSON.parse(req.body);
-  const { string } = req.params;
-
-  res.send(`GET REQUEST received ${string}`);
-});
+app.use('/api', api);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
