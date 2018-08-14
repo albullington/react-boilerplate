@@ -80,6 +80,13 @@ HomePage.propTypes = {
   handleChange: PropTypes.func,
 };
 
+const mapStateToProps = createStructuredSelector({
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+  list: makeSelectList(),
+  searchTerm: makeSelectString(),
+});
+
 export function mapDispatchToProps(dispatch) {
   return {
     handleChange: e => dispatch(addString(e.target.value)),
@@ -89,13 +96,6 @@ export function mapDispatchToProps(dispatch) {
     },
   };
 }
-
-const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-  list: makeSelectList(),
-  searchTerm: makeSelectString(),
-});
 
 const withConnect = connect(
   mapStateToProps,
