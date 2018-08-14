@@ -5,7 +5,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.post('/api/:search', (req, res) => {
+router.post('/', (req, res) => {
   const searchTerm = req.params;
   const list = ['string1', 'string5'];
   list.push(searchTerm);

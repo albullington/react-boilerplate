@@ -55,7 +55,7 @@ export class HomePage extends React.PureComponent {
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <Form>
+        <Form onSubmit={this.props.handleSubmit}>
           <Input
             type="text"
             id="search_term"
@@ -63,7 +63,7 @@ export class HomePage extends React.PureComponent {
             value={this.props.searchTerm}
             onChange={this.props.handleChange}
           />
-          <Button onSubmit={this.props.handleSubmit} type="submit" />
+          <Button type="submit" />
         </Form>
         <LoadingList {...listProps} />
       </div>

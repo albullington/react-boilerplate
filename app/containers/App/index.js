@@ -15,7 +15,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import LoadingList from 'components/LoadingList';
 
@@ -26,7 +25,6 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/list" component={LoadingList} />
-        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );

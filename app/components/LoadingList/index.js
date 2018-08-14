@@ -21,8 +21,8 @@ function LoadingList({ loading, error, list }) {
 }
 
 LoadingList.propTypes = {
-  loading: PropTypes.func,
-  error: PropTypes.func,
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   list: PropTypes.array,
 };
 
