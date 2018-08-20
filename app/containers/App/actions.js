@@ -15,16 +15,16 @@
  *    }
  */
 
-import { LOAD_LIST, LOAD_LIST_SUCCESS, LOAD_LIST_ERROR } from './constants';
+import { FETCH_LIST, LOAD_LIST_SUCCESS, LOAD_LIST_ERROR } from './constants';
 
 /**
  * Load the lists, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_LIST
  */
-export function loadList() {
+export function fetchList() {
   return {
-    type: LOAD_LIST,
+    type: FETCH_LIST,
   };
 }
 

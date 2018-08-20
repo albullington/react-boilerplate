@@ -15,8 +15,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import ListPage from 'containers/ListPage/Loadable';
 import Header from 'components/Header';
-import LoadingList from 'components/LoadingList';
 
 export default function App() {
   return (
@@ -24,7 +24,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/list" component={LoadingList} />
+        <Route path="/list" component={ListPage} />
       </Switch>
     </div>
   );
