@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FormattedMessage } from 'react-intl';
-
-import messages from './messages';
-
 function List({ list }) {
   let content = <div />;
   // If we have items, render them
@@ -17,9 +13,6 @@ function List({ list }) {
 
   return (
     <div>
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
       <ul>{content}</ul>
     </div>
   );

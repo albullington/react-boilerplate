@@ -17,22 +17,13 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
-import {
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectList,
-} from 'containers/App/selectors';
-import LoadingList from 'components/LoadingList';
 import Button from './Button';
 import Form from './Form';
 import Input from './Input';
 import messages from './messages';
-import { loadList } from '../App/actions';
-import { addString } from './actions';
+import { addString, insertStringIntoList } from './actions';
 import { makeSelectString } from './selectors';
 import reducer from './reducer';
-import saga from './saga';
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
@@ -43,13 +34,6 @@ export class HomePage extends React.PureComponent {
   }
 
   render() {
-    const { loading, error, list } = this.props;
-    const listProps = {
-      loading,
-      error,
-      list,
-    };
-
     return (
       <div>
         <h1>
@@ -65,25 +49,18 @@ export class HomePage extends React.PureComponent {
           />
           <Button type="submit" />
         </Form>
-        <LoadingList {...listProps} />
       </div>
     );
   }
 }
 
 HomePage.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  list: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   searchTerm: PropTypes.string,
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading(),
-  error: makeSelectError(),
-  list: makeSelectList(),
   searchTerm: makeSelectString(),
 });
 
@@ -92,7 +69,7 @@ export function mapDispatchToProps(dispatch) {
     handleChange: e => dispatch(addString(e.target.value)),
     handleSubmit: e => {
       if (e !== undefined && e.preventDefault) e.preventDefault();
-      dispatch(loadList());
+      dispatch(insertStringIntoList());
     },
   };
 }
@@ -107,13 +84,7 @@ const withReducer = injectReducer({
   reducer,
 });
 
-const withSaga = injectSaga({
-  key: 'home',
-  saga,
-});
-
 export default compose(
   withReducer,
-  withSaga,
   withConnect,
 )(HomePage);

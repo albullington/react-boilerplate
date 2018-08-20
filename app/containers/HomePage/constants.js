@@ -10,3 +10,4 @@
  */
 
 export const UPDATE_STRING = 'boilerplate/Home/UPDATE_STRING';
+export const INSERT_STRING = 'boilerplate/Home/INSERT_STRING';

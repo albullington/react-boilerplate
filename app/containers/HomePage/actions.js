@@ -15,7 +15,7 @@
  *    }
  */
 
-import { UPDATE_STRING } from './constants';
+import { UPDATE_STRING, INSERT_STRING } from './constants';
 
 /**
  * Changes the input field of the form
@@ -28,5 +28,16 @@ export function addString(searchTerm) {
   return {
     type: UPDATE_STRING,
     searchTerm,
+  };
+}
+
+/**
+ * Insert string into database
+ * *
+ * @return {object}      An action object with a type of INSERT_STRING
+ */
+export function insertStringIntoList() {
+  return {
+    type: INSERT_STRING,
   };
 }
