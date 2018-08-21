@@ -7,6 +7,7 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import createSaga from './globalSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -40,6 +41,7 @@ export default function configureStore(initialState = {}, history) {
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
+  createSaga.map(store.runSaga); // Allows starting sagas outside Redux middleware
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
