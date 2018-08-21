@@ -6,7 +6,7 @@ const logger = require('./logger');
 
 const argv = require('./argv');
 const port = require('./port');
-const api = require('./middlewares/api');
+const useDB = require('./middlewares/useDatabase');
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
@@ -20,7 +20,7 @@ app.use(cors());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-app.use('/api', api);
+app.use('/list', useDB);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

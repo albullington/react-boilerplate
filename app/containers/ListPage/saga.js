@@ -12,7 +12,7 @@ import request from 'utils/request';
  * List of strings request/response handler
  */
 export function* getList() {
-  const requestURL = `https://localhost:3000/api`;
+  const requestURL = `https://localhost:3000/list`;
 
   try {
     // Call our request helper (see 'request')
