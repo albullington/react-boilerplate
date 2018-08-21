@@ -1,15 +1,32 @@
+const bodyParser = require('body-parser');
 const express = require('express');
-const router = express.Router();
+const { fetchStrings, addStrings } = require('../../database/index');
 
-router.use((req, res, next) => {
-  next();
+const router = express.Router();
+router.use(bodyParser.json());
+
+router.get('/', (req, res) => {
+  fetchStrings()
+    .then(results => {
+      res.sendStatus(200);
+      res.end(JSON.stringify(results));
+    })
+    .catch(err => {
+      if (err) throw err;
+      res.end('');
+    });
 });
 
 router.post('/', (req, res) => {
-  const searchTerm = req.params;
-  const list = ['string1', 'string5'];
-  list.push(searchTerm);
-  res.send(searchTerm);
+  addStrings(req.body.string)
+    .then(results => {
+      res.sendStatus(200);
+      res.end(JSON.stringify(results));
+    })
+    .catch(err => {
+      if (err) throw err;
+      res.end('');
+    });
 });
 
 module.exports = router;
