@@ -77,7 +77,7 @@ const withConnect = connect(
 );
 
 const withSaga = injectSaga({
-  key: 'home',
+  key: 'list',
   saga,
 });
 
