@@ -1,31 +1,28 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const { fetchStrings, addStrings } = require('../../database/index');
+const db = require('../../database/index');
 
 const router = express.Router();
 router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
-  fetchStrings()
-    .then(results => {
-      res.sendStatus(200);
-      res.end(JSON.stringify(results));
+  db.any('SELECT * FROM strings;')
+    .then(list => {
+      res.json(list);
     })
     .catch(err => {
       if (err) throw err;
-      res.end('');
     });
 });
 
 router.post('/', (req, res) => {
-  addStrings(req.body.string)
-    .then(results => {
-      res.sendStatus(200);
-      res.end(JSON.stringify(results));
+  const newString = 'INSERT INTO strings VALUE ($1)';
+  db.none(newString, [req.body.searchTerm])
+    .then(() => {
+      res.send('String posted successfully');
     })
     .catch(err => {
       if (err) throw err;
-      res.end('');
     });
 });
 

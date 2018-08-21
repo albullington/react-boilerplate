@@ -2,9 +2,9 @@ CREATE DATABASE stringlist;
 
 \connect stringlist;
 
-CREATE SCHEMA stringlist;
+CREATE SCHEMA strings;
 
-CREATE TABLE stringlist (
+CREATE TABLE strings (
   id SERIAL PRIMARY KEY,
   string TEXT
 );

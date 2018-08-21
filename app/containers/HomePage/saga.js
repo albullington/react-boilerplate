@@ -11,7 +11,7 @@ import request from 'utils/request';
 /**
  * Post string request/response handler
  */
-export function* saveString() {
+export function* addString() {
   const searchTerm = yield select(makeSelectString());
   const requestURL = 'http://localhost:3000/list';
   const requestHeader = {
@@ -24,17 +24,13 @@ export function* saveString() {
     }),
   };
 
-  try {
-    yield call(request, requestURL, requestHeader);
-    yield put({ type: UPDATE_STRING, searchTerm: '' });
-  } catch (err) {
-    if (err) throw err;
-  }
+  yield call(request, requestURL, requestHeader);
+  yield put({ type: UPDATE_STRING, searchTerm: '' });
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* saveStrings() {
-  yield takeEvery(INSERT_STRING, saveString);
+export default function* addStrings() {
+  yield takeEvery(INSERT_STRING, addString);
 }
