@@ -12,7 +12,7 @@
 
 import { fromJS } from 'immutable';
 
-import { LOAD_LIST_SUCCESS, LOAD_LIST, LOAD_LIST_ERROR } from './constants';
+import { FETCH_LIST, LOAD_LIST_SUCCESS, LOAD_LIST_ERROR } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -23,7 +23,7 @@ const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_LIST:
+    case FETCH_LIST:
       return state
         .set('loading', true)
         .set('error', false)

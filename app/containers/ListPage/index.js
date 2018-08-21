@@ -22,7 +22,7 @@ import {
   makeSelectError,
   makeSelectList,
 } from 'containers/App/selectors';
-import LoadingList from 'components/LoadingList';
+import List from 'components/List';
 import { fetchList } from '../App/actions';
 import messages from './messages';
 import saga from './saga';
@@ -46,7 +46,7 @@ export class ListPage extends React.PureComponent {
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <LoadingList {...listProps} />
+        <List {...listProps} />
       </div>
     );
   }

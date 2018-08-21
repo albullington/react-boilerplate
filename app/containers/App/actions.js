@@ -35,10 +35,10 @@ export function fetchList() {
  *
  * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
  */
-export function listLoaded(data) {
+export function listLoaded(list) {
   return {
     type: LOAD_LIST_SUCCESS,
-    data,
+    list,
   };
 }
 
